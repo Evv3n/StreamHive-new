@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamHive</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="images/streamhive logo.png" type="favicon">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>Register</h2>
+            <form method="post" action="/register">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input type="password" name="confirm_password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <input type="submit" name="submit" value="Submit">
+                </div>
+                <p>Already have an account? <a href="/login">Login Here</a></p>
+              </form>
+        </div>
+    </div>
+</body>
+</html>

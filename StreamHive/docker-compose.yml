@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  rtmp:
+    build: ./rtmp
+    ports:
+        - "1935:1935"
+        - "8080:8080"
+    container_name: rtmp_server
+    volumes:
+      - /run/desktop/mnt/host/c/Users/King Evven/OneDrive/Dokumenter/Coding/StreamHive/data:/app/data
+      - /home/user/StreamHive/data/tmp/hls:/app/data/tmp/hls
+  auth:
+    build: ./auth
+    container_name: auth_server
+  
