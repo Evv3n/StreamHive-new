@@ -5,7 +5,7 @@ const app = express();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 //includes database connection
-const database = require('./models/database.js');
+const con = require('./models/database.js');
 const crypto = require('crypto');
 //generates random string
 const nohackers = crypto.randomBytes(16).toString('hex');
@@ -130,6 +130,7 @@ app.get('/', function (req, res) {
     // User is logged in, render the home page
     con.connect(function(err) {
       con.query("SELECT * FROM users", function (err, result, fields) {
+        console.log(user_id)
         if (err) throw err;  
         res.render('index', {
           data: result

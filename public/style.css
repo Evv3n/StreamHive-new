@@ -18,13 +18,13 @@ body {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
   min-height: 50px;
   max-height: 50px;
+  background-color: #161616c4;
 }
 
 .left_nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-right: auto;
 }
 .middle_nav {
   flex-grow: 1;
@@ -71,6 +71,7 @@ body {
 .search_bar {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   width: 355px;
 }
@@ -89,11 +90,18 @@ body {
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background-color: #1f1f23;
+  background-color: #3d3d40;
   color: white;
   font-family: 'Custom Font';
 }
+
 .material-symbols-outlined.close {
   font-size: 24px;
   color: white;
+}
+
+.main_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
