@@ -5,9 +5,25 @@ const app = express();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 //includes database connection
-const con = require('./models/database.js');
+function create_con(){
+  return mysql.createConnection({
+    host:"eivinddatabase.mysql.database.azure.com", 
+    user:"azureuser", 
+    password:"@31v1nd@;elsker@!databaser", 
+    database:"StreamHive", 
+    port:3306, 
+    ssl:{ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")}
+  }); 
+}
+con = create_con();
+con.connect(function(err) {
+  if (err) throw err;
+  console.log('StreamHive database connected');
+});
+
+var con = create_con();
 const crypto = require('crypto');
-//generates random string
+//generates random string for session cookie
 const nohackers = crypto.randomBytes(16).toString('hex');
 console.log(nohackers);
 app.use(express.static('public'));
@@ -32,6 +48,7 @@ app.get('/login', (req, res) => {
 });
 //register
 app.post('/register', (req, res) => {
+  con = create_con()
   const username = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -129,8 +146,7 @@ app.get('/', function (req, res) {
   if (req.session && req.session.loggedIn) {
     // User is logged in, render the home page
     con.connect(function(err) {
-      con.query("SELECT * FROM users", function (err, result, fields) {
-        console.log(user_id)
+      con.query("SELECT user_id FROM users", function (err, result, fields) {
         if (err) throw err;  
         res.render('index', {
           data: result

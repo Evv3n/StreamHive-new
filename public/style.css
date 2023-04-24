@@ -4,8 +4,8 @@
     padding: 0;
 }
 @font-face {
-  font-family: 'Custom Font';
-  src: url('./fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-family: 'Main_Font';
+  src: url('./fonts/Roobert-Regular.ttf') format('truetype');
 }
 body {
   background-color: #0c0c10;
@@ -39,7 +39,14 @@ body {
 }
 .all_text {
   color: white;
-  font-family: 'Custom Font';
+  font-family: 'Main_Font';
+  text-decoration: none;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.red_text {
+  color: red;
+  font-family: 'Main_Font';
   text-decoration: none;
   padding-left: 20px;
   padding-right: 20px;
@@ -55,7 +62,6 @@ body {
   font-family: "Material Symbols Outlined";
   font-size: 24px;
   margin-right: 10px;
-  color: white;
 }
 #logo {
   height: 25px;
@@ -66,6 +72,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   margin-left: auto;
+  
 }
 /* search bar */
 .search_bar {
@@ -92,7 +99,7 @@ body {
   border: none;
   background-color: #3d3d40;
   color: white;
-  font-family: 'Custom Font';
+  font-family: 'Main_Font';
 }
 
 .material-symbols-outlined.close {
@@ -104,4 +111,57 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sidebar {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  width: 257px;
+}
+
+.ScIconSVG-sc-1q25cff-1 {
+  fill: white;
+  color: white;
+  font-family: "Material Symbols Outlined";
+  font-size: 24px;
+  margin-right: 10px;
+}
+.default-icon {
+  color: white;
+  fill: white;
+  width: 20px;
+  height: 20px;
+}
+button {
+  all: unset;
+  border: none;
+  outline: none;
+  background: none;
+}
+.bits_button {
+  text-align: inherit;
+
+}
+h5 {
+  font-family: 'Main_Font';
+  color: white;
+}
+.get-bits-button {
+  background-color: #9147ff;
+  color: #ffffff;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.get-bits-button:hover {
+  background-color: #7538d6;
+}
+.get-bits-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(145, 71, 255, 0.4);
 }

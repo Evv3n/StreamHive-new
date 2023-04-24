@@ -1,14 +1,17 @@
 const mysql = require('mysql');
 const fs = require('fs');
 
-var con=mysql.createConnection({
+function create_con(){
+  return mysql.createConnection({
     host:"eivinddatabase.mysql.database.azure.com", 
     user:"azureuser", 
     password:"@31v1nd@;elsker@!databaser", 
     database:"StreamHive", 
     port:3306, 
     ssl:{ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")}
-  });
+  }); 
+}
+var con = create_con();
 
   con.connect(function(err) {
     if (err) throw err;
@@ -25,3 +28,4 @@ var con=mysql.createConnection({
   
   // Export the connection object for reuse in other modules
   module.exports = con;
+ 
