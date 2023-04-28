@@ -4,6 +4,7 @@ const fs = require('fs');
 const app = express();
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
+
 //includes database connection
 function create_con(){
   return mysql.createConnection({
@@ -18,14 +19,14 @@ function create_con(){
 con = create_con();
 con.connect(function(err) {
   if (err) throw err;
-  console.log('StreamHive database connected');
+  console.log('StreamHive Database is connected');
 });
 
 var con = create_con();
 const crypto = require('crypto');
 //generates random string for session cookie
 const nohackers = crypto.randomBytes(16).toString('hex');
-console.log(nohackers);
+console.log('Crypto string: ' + nohackers);
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({

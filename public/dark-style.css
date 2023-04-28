@@ -71,9 +71,12 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-left: auto;
-  
+  margin-right: 40px;
 }
+.icons_container > button, .icons_container > div {
+  margin-right: 10px;
+}
+
 /* search bar */
 .search_bar {
   position: relative;
@@ -140,12 +143,26 @@ button {
   background: none;
 }
 .bits_button {
+  display: flex;
   text-align: inherit;
-
+  background-color: #53535F61;
+  align-items: center;
+  border-radius: 5px;
+  height: 30px;
+}
+.dropdown_content {
+  display: none;
 }
 h5 {
   font-family: 'Main_Font';
   color: white;
+  margin: 15px;
+}
+.icon-and-text {
+  display: flex;
+  margin-right: 15px;
+  margin-left: 15px;
+  align-items: center;
 }
 .get-bits-button {
   background-color: #9147ff;
