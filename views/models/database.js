@@ -3,12 +3,11 @@ const fs = require('fs');
 
 function create_con(){
   return mysql.createConnection({
-    host:"eivinddatabase.mysql.database.azure.com", 
-    user:"azureuser", 
-    password:"@31v1nd@;elsker@!databaser", 
+    host:"127.0.0.1", 
+    user:"root", 
+    password:"Passord1Passord2", 
     database:"StreamHive", 
-    port:3306, 
-    ssl:{ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")}
+    port:3306
   }); 
 }
 var con = create_con();

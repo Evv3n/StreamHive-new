@@ -8,21 +8,23 @@ const bcrypt = require('bcrypt');
 //includes database connection
 function create_con(){
   return mysql.createConnection({
-    host:"eivinddatabase.mysql.database.azure.com", 
-    user:"azureuser", 
-    password:"@31v1nd@;elsker@!databaser", 
-    database:"StreamHive", 
-    port:3306, 
-    ssl:{ca:fs.readFileSync("DigiCertGlobalRootCA.crt.pem")}
+    host:"localhost", 
+    user:"root", 
+    password:"password", 
+    database:"streamhive", 
+    port:3306
   }); 
 }
-con = create_con();
-con.connect(function(err) {
-  if (err) throw err;
-  console.log('StreamHive Database is connected');
-});
 
-var con = create_con();
+var con
+
+//con = create_con();
+//con.connect(function(err) {
+  //if (err) throw err;
+  //console.log('StreamHive Database is connected');
+//});
+
+
 const crypto = require('crypto');
 //generates random string for session cookie
 const nohackers = crypto.randomBytes(16).toString('hex');
@@ -46,6 +48,10 @@ app.get('/register', (req, res) => {
 app.get('/login', (req, res) => {
   // Render the login page
   res.render('login');
+});
+app.get('/browse', (req, res) => {
+  // Render the login page
+  res.render('browse');
 });
 //register
 app.post('/register', (req, res) => {
@@ -94,6 +100,7 @@ app.post('/register', (req, res) => {
 });
 //login
 app.post('/login', (req, res) => {
+  con = create_con()
   const email = req.body.email;
   const password = req.body.password;
   let error = '';
