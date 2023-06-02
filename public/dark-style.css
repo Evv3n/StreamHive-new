@@ -28,11 +28,7 @@ a {
   justify-content: flex-start;
   align-items: center;
 }
-.logout_icon {
-  display: flex;
-  height: 25px;
-  width: 25px;
-}
+
 .middle_nav {
   flex-grow: 1;
   text-align: center;
@@ -51,6 +47,7 @@ a {
   padding-left: 20px;
   padding-right: 20px;
 }
+
 .all_text:hover {
   color: red;
 }
@@ -77,6 +74,7 @@ a {
   height: 25px;
   width: 25px;
 }
+
 .icons_container {
   display: flex;
   justify-content: flex-end;
@@ -132,7 +130,6 @@ a {
   height: 1279px;
   width: 257px;
   background-color: #1f1f23;
-  flex-wrap: nowrap;
 }
 #top_sidebar {
   display: flex;
@@ -167,18 +164,58 @@ button {
 #dropdown-content {
   display: none;
   background-color: #1f1f23;
-  border-radius: 5px;
+  border-radius: 3px;
+  position: absolute;
+  top: 50px;
+  width: 290.66px;
+}
+#channel_text{
+  color: white;
+  font-family: 'Main_Font';
+  text-decoration: none;
 }
 .dark_theme_label {
   color: white;
   font-family: 'Main_Font';
   text-decoration: none;
 }
+.logout_container {
+  display: flex;
+}
+.logout_text {
+  margin-left: 20px;
+  color: white;
+  font-family: 'Main_Font';
+  text-decoration: none;
+}
+
+hr {
+  opacity: .10;
+}
+.logout_icon {
+  height: 20px;
+  width: 20px;
+}
+.dark_theme_container {
+  display: flex;
+}
+.dark_theme_text {
+  margin-left: 10px;
+  color: white;
+  font-family: 'Main_Font';
+  text-decoration: none;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.dark_theme_icon {
+  height: 20px;
+  width: 20px;
+}
 .main_div {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
+  width: 100%;
 }
 h5 {
   font-family: 'Main_Font';
@@ -187,7 +224,6 @@ h5 {
 }
 .container {
   display: flex;
-  flex-wrap: nowrap;
 }
 .main_top {
   display: flex;
