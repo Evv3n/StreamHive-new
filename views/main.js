@@ -92,12 +92,22 @@ app.post('/register', (req, res) => {
           if (err) {
             throw err;
           }
-          res.send('<p class="success">Your registration was successful!</p>');
+          res.redirect('/login'); 
         });
       });
     }
   });
 });
+app.get('/logout', (req, res) => {
+  // Clear the session and redirect to the login page
+  req.session.destroy((err) => {
+    if (err) {
+      console.log('Error logging out:', err);
+    }
+    res.redirect('/login');
+  });
+});
+
 //login
 app.post('/login', (req, res) => {
   con = create_con()
