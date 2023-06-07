@@ -162,12 +162,16 @@ app.post('/login', (req, res) => {
 app.get('/', function (req, res) {
   // Check if the user is logged in
   if (req.session && req.session.loggedIn) {
+    // Retrieve the username from the session
+    var username = req.session.user.username;
+
     // User is logged in, render the home page
     con.connect(function(err) {
       con.query("SELECT user_id FROM users", function (err, result, fields) {
         if (err) throw err;  
         res.render('index', {
-          data: result
+          data: result,
+          username: username // Pass the username to the template
         });
       }); 
     });
