@@ -50,8 +50,12 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 app.get('/browse', (req, res) => {
-  // Render the login page
+  // Render the browse page
   res.render('browse');
+});
+app.get('/channel', (req, res) => {
+  // Render the channel page
+  res.render('channel');
 });
 //register
 app.post('/register', (req, res) => {
@@ -164,10 +168,9 @@ app.get('/', function (req, res) {
   if (req.session && req.session.loggedIn) {
     // Retrieve the username from the session
     var username = req.session.user.username;
-
     // User is logged in, render the home page
     con.connect(function(err) {
-      con.query("SELECT user_id FROM users", function (err, result, fields) {
+      con.query("SELECT user_id, username FROM users", function (err, result, fields) {
         if (err) throw err;  
         res.render('index', {
           data: result,
