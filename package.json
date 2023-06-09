@@ -7,6 +7,16 @@
     "express-session": "^1.17.3",
     "fs": "^0.0.1-security",
     "hls": "^0.0.1",
-    "mysql": "^2.18.1"
-  }
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.22"
+  },
+  "name": "streamhive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

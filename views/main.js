@@ -40,11 +40,36 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.get('/index', (req, res) => {
   // Render the register page
-  res.render('index');
+  res.redirect('/');
 });
 app.get('/register', (req, res) => {
   // Render the register page
   res.render('register');
+});
+app.get('/stream', (req, res) => {
+    // Check if the user is logged in
+      if (req.session && req.session.loggedIn) {
+        // Retrieve the username from the session
+        var username = req.session.user.username;
+    
+        // Check if the user has uploaded a profile picture
+        var profilePictureUrl = req.session.user.profilePictureUrl ? req.session.user.profilePictureUrl : '/images/defaultpfp.png';
+    
+        // User is logged in, render the home page
+        con.connect(function(err) {
+          con.query("SELECT user_id, username FROM users", function (err, result, fields) {
+            if (err) throw err;  
+            res.render('stream', { 
+              data: result,
+              username: username, // Pass the username to the template
+              profilePictureUrl: profilePictureUrl // Pass the profile picture URL to the template
+            });
+          }); 
+        });
+      } else {
+        // User is not logged in, redirect to the login page
+        res.redirect('/login');
+      }
 });
 app.get('/login', (req, res) => {
   // Render the login page
@@ -55,9 +80,31 @@ app.get('/browse', (req, res) => {
   res.render('browse');
 });
 app.get('/channel', (req, res) => {
-  // Render the channel page
-  res.render('channel');
+    // Check if the user is logged in
+    if (req.session && req.session.loggedIn) {
+      // Retrieve the username from the session
+      var username = req.session.user.username;
+  
+      // Check if the user has uploaded a profile picture
+      var profilePictureUrl = req.session.user.profilePictureUrl ? req.session.user.profilePictureUrl : '/images/defaultpfp.png';
+  
+      // User is logged in, render the home page
+      con.connect(function(err) {
+        con.query("SELECT user_id, username FROM users", function (err, result, fields) {
+          if (err) throw err;  
+          res.render('channel', { 
+            data: result,
+            username: username, // Pass the username to the template
+            profilePictureUrl: profilePictureUrl // Pass the profile picture URL to the template
+          });
+        }); 
+      });
+    } else {
+      // User is not logged in, redirect to the login page
+      res.redirect('/login');
+    }
 });
+
 app.get('/toggle', (req, res) => {
   const currentTheme = req.query.theme;
   const themeLink = `<link id="theme-link" rel="stylesheet" type="text/css" href="${currentTheme === 'dark' ? 'dark-style.css' : 'light-style.css'}">`;
@@ -121,13 +168,13 @@ app.get('/logout', (req, res) => {
 //login
 app.post('/login', (req, res) => {
   con = create_con()
-  const email = req.body.email;
+  const username = req.body.username;
   const password = req.body.password;
   let error = '';
 
-  // validate if email is empty
-  if (!email) {
-    error = '<p class="error">Please enter email.</p>';
+  // validate if username is empty
+  if (!username) {
+    error = '<p class="error">Please enter username.</p>';
   }
 
   // validate if password is empty
@@ -136,8 +183,8 @@ app.post('/login', (req, res) => {
   }
 
   if (!error) {
-    const emailQuery = 'SELECT * FROM users WHERE email = ?';
-    con.query(emailQuery, [email], (err, results) => {
+    const usernameQuery = 'SELECT * FROM users WHERE username = ?';
+    con.query(usernameQuery, [username], (err, results) => {
       if (err) {
         throw err;
       }
@@ -174,13 +221,18 @@ app.get('/', function (req, res) {
   if (req.session && req.session.loggedIn) {
     // Retrieve the username from the session
     var username = req.session.user.username;
+
+    // Check if the user has uploaded a profile picture
+    var profilePictureUrl = req.session.user.profilePictureUrl ? req.session.user.profilePictureUrl : '/images/defaultpfp.png';
+
     // User is logged in, render the home page
     con.connect(function(err) {
       con.query("SELECT user_id, username FROM users", function (err, result, fields) {
         if (err) throw err;  
-        res.render('index', {
+        res.render('index', { 
           data: result,
-          username: username // Pass the username to the template
+          username: username, // Pass the username to the template
+          profilePictureUrl: profilePictureUrl // Pass the profile picture URL to the template
         });
       }); 
     });

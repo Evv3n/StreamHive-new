@@ -49,3 +49,48 @@ function handleClickOutsideWhisper(event) {
   }
 }
 
+$(document).ready(function() {
+  $('.follow-btn').click(function() {
+    var userId = $(this).data('user-id');
+    followUser(userId);
+  });
+
+  $('.unfollow-btn').click(function() {
+    var userId = $(this).data('user-id');
+    unfollowUser(userId);
+  });
+
+  function followUser(userId) {
+    $.ajax({
+      type: 'POST',
+      url: '/follow',
+      data: { userId: userId },
+      success: function(response) {
+        // Handle the success response
+        alert('User followed successfully!');
+        location.reload(); // Refresh the page to update the UI
+      },
+      error: function(error) {
+        // Handle the error response
+        alert('Error following user: ' + error.responseText);
+      }
+    });
+  }
+
+  function unfollowUser(userId) {
+    $.ajax({
+      type: 'POST',
+      url: '/unfollow',
+      data: { userId: userId },
+      success: function(response) {
+        // Handle the success response
+        alert('User unfollowed successfully!');
+        location.reload(); // Refresh the page to update the UI
+      },
+      error: function(error) {
+        // Handle the error response
+        alert('Error unfollowing user: ' + error.responseText);
+      }
+    });
+  }
+});
