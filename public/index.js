@@ -48,3 +48,4 @@ function handleClickOutsideWhisper(event) {
     document.removeEventListener("click", handleClickOutsideWhisper);
   }
 }
+

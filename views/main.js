@@ -12,7 +12,8 @@ function create_con(){
     user:"root", 
     password:"password", 
     database:"streamhive", 
-    port:3306
+    port:3306,
+    insecureAuth: true
   }); 
 }
 
@@ -57,6 +58,11 @@ app.get('/channel', (req, res) => {
   // Render the channel page
   res.render('channel');
 });
+app.get('/toggle', (req, res) => {
+  const currentTheme = req.query.theme;
+  const themeLink = `<link id="theme-link" rel="stylesheet" type="text/css" href="${currentTheme === 'dark' ? 'dark-style.css' : 'light-style.css'}">`;
+  res.send(themeLink);
+})
 //register
 app.post('/register', (req, res) => {
   con = create_con()
